@@ -1,0 +1,1346 @@
+/* 训练分析：按界面区域分段；修改具体区域时查找下面的中文注释。 */
+
+/* 分析页面背景 */
+
+.analysis-page {
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--parchment);
+}
+
+/* 分析页顶部导航 */
+
+.analysis-nav {
+  z-index: 40;
+  align-items: center;
+  display: flex;
+  position: sticky;
+  top: 0;
+  height: 52px;
+  box-shadow: none;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  background: #f5f5f7cc;
+  border-bottom: 1px solid #00000014;
+  padding: 0 max(24px, 50vw - 776px);
+}
+
+.analysis-nav > p {
+  margin-left: 28px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.analysis-nav > p i {
+  color: #9daec4;
+  margin: 0 12px;
+}
+
+.analysis-nav > div {
+  gap: 10px;
+  margin-left: auto;
+  display: flex;
+}
+
+.analysis-content {
+  margin: 0 auto;
+  width: min(1440px, 100% - 64px);
+  padding: 64px 0 80px;
+}
+
+/* 分析页标题 */
+
+.analysis-heading {
+  justify-content: space-between;
+  align-items: end;
+  display: flex;
+  margin-bottom: 48px;
+}
+
+.analysis-heading h1 {
+  color: var(--ink);
+  letter-spacing: 0;
+  margin: 12px 0;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* 视频与概览面板的布局 */
+
+.analysis-focus {
+  grid-template-columns: minmax(0, 2.3fr) minmax(280px, 0.7fr);
+  display: grid;
+  gap: 24px;
+}
+
+/* 视频面板外框 */
+
+.video-panel {
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* 视频播放区域 */
+
+.video-stage {
+  aspect-ratio: 16/8.45;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-stage > video {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 球场标定点 */
+
+.calibration {
+  cursor: crosshair;
+  position: absolute;
+  inset: 0;
+  background: #00000014;
+}
+
+.calibration > span {
+  color: #fff;
+  border-radius: 50%;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  font-weight: 900;
+  display: grid;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: var(--blue);
+  box-shadow: none;
+}
+
+.calibration > div {
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  padding: 12px 14px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  box-shadow: none;
+  background: #f5f5f7d6;
+  border: 1px solid #00000014;
+  border-radius: 11px;
+}
+
+.calibration strong {
+  display: block;
+}
+
+.calibration small {
+  display: block;
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.time-tag {
+  color: #fff;
+  border-radius: 7px;
+  padding: 5px 8px;
+  font: 700 13px monospace;
+  position: absolute;
+  bottom: 50px;
+  transform: translate(-50%);
+  background: var(--blue);
+}
+
+/* 视频播放与分析控制区 */
+
+.analysis-controls {
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  min-height: 80px;
+  padding: 16px;
+}
+
+.analysis-controls > div {
+  align-items: center;
+  gap: 7px;
+  margin-right: auto;
+  display: flex;
+}
+
+.analysis-controls > div > span {
+  margin-right: 5px;
+  color: #333;
+  font-size: 14px;
+}
+
+.analysis-controls > div button {
+  cursor: pointer;
+  border: 1px solid var(--hairline);
+  color: #333;
+  background: #fff;
+  border-radius: 9999px;
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+.analysis-controls > div button.active {
+  border-color: var(--blue);
+  color: #fff;
+  background: var(--blue);
+}
+
+/* 分析任务进度 */
+
+.job {
+  grid-template-columns: 1fr auto;
+  gap: 7px;
+  margin: 0 15px 15px;
+  padding: 13px;
+  display: grid;
+  border: 1px solid var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  border-radius: 11px;
+}
+
+.job strong {
+  display: block;
+}
+
+.job small {
+  display: block;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.job > b {
+  color: var(--blue);
+}
+
+.job > i {
+  background: #e1ebfa;
+  border-radius: 4px;
+  grid-column: 1/-1;
+  height: 4px;
+  overflow: hidden;
+}
+
+.job > i span {
+  height: 100%;
+  display: block;
+  background: var(--blue);
+}
+
+/* 球场概览面板 */
+
+.round-panel {
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  border-radius: 18px;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: #fff;
+  padding: 24px;
+}
+
+.round-panel > header {
+  justify-content: space-between;
+  align-items: baseline;
+  display: flex;
+  color: var(--ink);
+}
+
+.round-panel > header span {
+  font-size: 13px;
+}
+
+.round-panel > header strong {
+  font-size: 21px;
+}
+
+.mini-court {
+  background: linear-gradient(145deg, #dff8ff, #bceee6);
+  border: 2px solid #2764ff8f;
+  height: 200px;
+  margin: 18px 0;
+  position: relative;
+  transform: perspective(700px) rotateX(53deg);
+  box-shadow:
+    0 28px 30px #1a519829,
+    inset 0 0 0 13px #ffffff3b;
+}
+
+.mini-court:before {
+  content: "";
+  background: #2764ff7a;
+  position: absolute;
+  height: 2px;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+
+.mini-court:after {
+  content: "";
+  background: #2764ff7a;
+  position: absolute;
+  width: 2px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+}
+
+.mini-court span {
+  color: #fff;
+  border-radius: 50%;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  font-size: 13px;
+  font-weight: 900;
+  display: grid;
+  position: absolute;
+}
+
+.mini-court span:first-child {
+  background: var(--aqua);
+  bottom: 14%;
+  left: 28%;
+}
+
+.mini-court span:nth-child(2) {
+  background: var(--coral);
+  top: 15%;
+  right: 29%;
+}
+
+.mini-court i {
+  border-top: 3px solid var(--coral);
+  border-radius: 50%;
+  width: 43%;
+  height: 45%;
+  position: absolute;
+  top: 24%;
+  left: 31%;
+  transform: rotate(-7deg);
+}
+
+.round-panel > label {
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+  padding: 0 13px;
+  font-size: 13px;
+  display: flex;
+  border: 1px solid var(--hairline);
+  color: #333;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.overview > h2 {
+  text-align: center;
+  margin: 0 0 18px;
+  margin-bottom: 24px;
+  font-size: 34px;
+  font-weight: 600;
+}
+
+/* 分析指标栏 */
+
+.metric-strip {
+  grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  background: #fff;
+  border-radius: 18px;
+}
+
+.metric-strip > span {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  border-right: 1px solid var(--hairline);
+  padding: 24px;
+}
+
+.metric-strip > span:last-child {
+  border: 0;
+}
+
+.metric-strip small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metric-strip b {
+  font-size: 31px;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.metric-strip span:first-child b,
+.metric-strip span:nth-child(3) b,
+.metric-strip span:nth-child(4) b {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.metric-strip em {
+  font-size: 13px;
+  font-style: normal;
+}
+
+/* 热力图与建议的布局 */
+
+.lower-analysis {
+  display: grid;
+  grid-template-columns: minmax(440px, 0.82fr) minmax(560px, 1.18fr);
+  align-items: start;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* 热力图面板 */
+
+.heat-panel {
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  background: #fff;
+  border-radius: 18px;
+}
+
+/* 训练建议面板 */
+
+.advice-panel {
+  min-height: 0;
+  overflow: visible;
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  background: #fff;
+  border-radius: 18px;
+}
+
+.heat-panel > header,
+.advice-panel > header {
+  justify-content: space-between;
+  align-items: center;
+  height: 82px;
+  padding: 0 22px;
+  display: flex;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.heat-panel header span small,
+.heat-panel header span b,
+.advice-panel header span small,
+.advice-panel header span b {
+  display: block;
+}
+
+.heat-panel header small,
+.advice-panel header small {
+  color: var(--blue);
+  letter-spacing: 0.16em;
+  font-size: 14px;
+}
+
+.heat-panel header b,
+.advice-panel header b {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.heat-panel header em,
+.advice-panel header em {
+  color: var(--muted);
+  font: 13px monospace;
+  font-size: 14px;
+}
+
+/* 球场热力图 */
+
+.heat-court {
+  background: linear-gradient(145deg, #e9f7ff, #dcfff7);
+  border: 2px solid #2764ff61;
+  width: 300px;
+  height: 360px;
+  margin: 25px auto 0;
+  position: relative;
+}
+
+.heat-court:before {
+  content: "";
+  background: #2764ff61;
+  position: absolute;
+  height: 2px;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+
+.heat-court:after {
+  content: "";
+  background: #2764ff61;
+  position: absolute;
+  width: 2px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+}
+
+.heat-court span {
+  filter: blur(15px);
+  border-radius: 50%;
+  width: 110px;
+  height: 90px;
+  position: absolute;
+}
+
+.heat-court span:first-child {
+  background: #ffb438b3;
+  bottom: 45px;
+  left: 15px;
+}
+
+.heat-court span:nth-child(2) {
+  background: #ff78669e;
+  top: 50px;
+  right: 15px;
+}
+
+.heat-court i {
+  border: 3px solid var(--aqua);
+  border-bottom-color: #0000;
+  border-left-color: #0000;
+  border-radius: 50%;
+  width: 48%;
+  height: 50%;
+  position: absolute;
+  bottom: 16%;
+  left: 22%;
+  transform: rotate(-20deg);
+}
+
+.heat-panel > p {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.advice-panel section {
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 34px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 20px 0;
+  display: grid;
+}
+
+.advice-panel section > span {
+  color: var(--blue);
+  font: 700 13px monospace;
+}
+
+.advice-panel h3 {
+  margin: 0 0 7px;
+  font-size: 14px;
+}
+
+.advice-panel section p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.advice-panel section b {
+  margin-top: 8px;
+  font-size: 13px;
+  display: block;
+}
+
+.advice-panel section button {
+  color: var(--blue);
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  align-self: center;
+  font-size: 13px;
+}
+
+.disclaimer {
+  text-align: center;
+  color: var(--muted);
+  margin: 24px 0 0;
+  font-size: 13px;
+}
+
+/* 屏幕适配：(width<=1150px) */
+
+@media (width<=1150px) {
+  .analysis-focus,
+  .lower-analysis {
+    grid-template-columns: 1fr;
+  }
+
+  .round-panel {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    display: grid;
+  }
+
+  .round-panel > header,
+  .round-panel > label {
+    grid-column: 1/-1;
+  }
+
+  .mini-court {
+    height: 240px;
+  }
+}
+
+/* 屏幕适配：(width<=760px) */
+
+@media (width<=760px) {
+  .analysis-nav {
+    padding: 0 14px;
+  }
+
+  .analysis-nav .brand {
+    border: 0;
+    padding: 0;
+  }
+
+  .analysis-nav > p,
+  .analysis-nav .outline-btn {
+    display: none;
+  }
+
+  .analysis-content {
+    width: calc(100% - 24px);
+    padding-top: 25px;
+  }
+
+  .analysis-heading {
+    align-items: start;
+  }
+
+  .analysis-heading h1 {
+    font-size: 28px;
+  }
+
+  .round-panel {
+    display: block;
+  }
+
+  .metric-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric-strip > span:nth-child(2) {
+    border-right: 0;
+  }
+
+  .metric-strip > span {
+    padding: 18px;
+  }
+
+  .metric-strip b {
+    font-size: 25px;
+  }
+
+  .analysis-controls {
+    flex-wrap: wrap;
+  }
+
+  .analysis-controls > div {
+    width: 100%;
+    margin: 0;
+  }
+
+  .video-stage {
+    aspect-ratio: 16/10;
+  }
+
+  .heat-panel,
+  .advice-panel {
+    min-height: auto;
+  }
+}
+
+/* 打印报告的布局 */
+
+@media print {
+  .analysis-nav,
+  .analysis-controls,
+  .round-panel,
+  .calibration,
+  .job {
+    display: none !important;
+  }
+
+  .analysis-page,
+  .video-panel,
+  .heat-panel,
+  .advice-panel {
+    box-shadow: none;
+    background: #fff;
+  }
+
+  .analysis-focus,
+  .lower-analysis {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .video-stage {
+    display: none;
+  }
+}
+
+.analysis-shell {
+  display: flex;
+}
+
+.analysis-shell > .analysis-page {
+  width: calc(100% - 104px);
+  margin-left: 104px;
+}
+
+.analysis-shell .analysis-nav {
+  width: 100%;
+}
+
+/* 屏幕适配：(width<=720px) */
+
+@media (width<=720px) {
+  .analysis-shell > .analysis-page {
+    width: calc(100% - 68px);
+    margin-left: 68px;
+  }
+}
+
+.analysis-lab-grid {
+  grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.65fr);
+  display: grid;
+  gap: 24px;
+}
+
+/* 屏幕适配：(width<=1180px) */
+
+@media (width<=1180px) {
+  .analysis-lab-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 屏幕适配：(width<=720px) */
+
+@media (width<=720px) {
+  .analysis-lab-grid {
+    display: block;
+  }
+}
+
+.mini-court-pro {
+  height: 224px;
+  margin: 15px 0 10px;
+  overflow: hidden;
+  transform: none;
+  border: 1px solid var(--hairline);
+  background: var(--parchment);
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+.mini-court-pro:before,
+.mini-court-pro:after {
+  display: none;
+}
+
+.mini-court-pro svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mini-floor {
+  stroke: #3c7ae8;
+  stroke-width: 1.3px;
+}
+
+.mini-boundary {
+  fill: none;
+  stroke-width: 1.3px;
+  stroke: #0066cc73;
+}
+
+.mini-player-dot {
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.mini-player-dot.primary {
+  fill: #06c;
+}
+
+.heat-court-pro {
+  aspect-ratio: 320/440;
+  border: 0;
+  width: min(360px, 84%);
+  height: auto;
+  margin: 22px auto 8px;
+  border-color: var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  box-shadow: none;
+}
+
+.heat-court-pro:before,
+.heat-court-pro:after {
+  display: none;
+}
+
+.heat-court-pro svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.heat-floor {
+  stroke-width: 1.5px;
+  fill: #f5f5f7;
+  stroke: #06c;
+}
+
+.heat-lines {
+  fill: none;
+  stroke-width: 1.2px;
+  stroke: #0066cc73;
+}
+
+.heat-route-main {
+  fill: none;
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 9 6;
+  stroke: #06c;
+  filter: none;
+}
+
+.heat-explanation {
+  border-radius: 16px;
+  margin: 0 22px 22px;
+  padding: 17px 18px;
+  border-color: var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  box-shadow: none;
+}
+
+.heat-explanation h3 {
+  color: #112f58;
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.heat-explanation p {
+  margin: 0 0 11px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.heat-explanation ul {
+  gap: 7px;
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+}
+
+.heat-explanation li {
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.heat-explanation small {
+  color: #7186a2;
+  border-top: 1px solid #2764ff1f;
+  margin-top: 12px;
+  padding-top: 10px;
+  display: block;
+  font-size: 14px;
+}
+
+.advice-panel > div {
+  padding: 6px 22px 18px;
+}
+
+.advice-panel .coaching-card {
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  padding: 24px 0;
+}
+
+/* 单条教练建议 */
+
+.coaching-card > .advice-index {
+  color: var(--blue);
+  grid-row: 1/3;
+  padding-top: 3px;
+  font: 800 13px monospace;
+  font-size: 14px;
+}
+
+.advice-body {
+  min-width: 0;
+}
+
+.advice-title-row {
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.advice-panel .advice-title-row h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.advice-title-row strong {
+  border-radius: 99px;
+  flex: none;
+  padding: 5px 8px;
+  color: var(--blue);
+  background: #0066cc14;
+  font-size: 14px;
+}
+
+.advice-panel .advice-summary {
+  border-left: 3px solid var(--blue);
+  border-radius: 0 9px 9px 0;
+  margin: 8px 0 14px;
+  padding: 10px 12px;
+  line-height: 1.65;
+  border-color: var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  box-shadow: none;
+  border-left-color: var(--blue);
+  font-size: 14px;
+}
+
+.diagnostic-block {
+  border: 1px solid #2764ff1a;
+  border-radius: 13px;
+  margin-top: 10px;
+  padding: 13px 14px;
+  border-color: var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  box-shadow: none;
+}
+
+.diagnostic-block > small {
+  letter-spacing: 0.08em;
+  margin-bottom: 7px;
+  font-weight: 800;
+  display: block;
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.diagnostic-block ul,
+.diagnostic-block ol {
+  gap: 5px;
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+}
+
+.diagnostic-block li,
+.diagnostic-block p {
+  color: #415a7a;
+  margin: 0;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.training-target {
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+  display: grid;
+}
+
+.training-target > span {
+  border-radius: 11px;
+  padding: 11px 12px;
+  line-height: 1.55;
+  border-color: var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.training-target small {
+  margin-bottom: 4px;
+  font-weight: 800;
+  display: block;
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.advice-source {
+  color: #8191a7;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.advice-panel .advice-title-row > button {
+  grid-column: 2;
+  justify-self: start;
+  margin-top: 3px;
+  padding: 8px 11px;
+  font-weight: 700;
+  border: 1px solid var(--blue);
+  min-height: 44px;
+  color: var(--blue);
+  background: #fff;
+  border-radius: 9999px;
+  font-size: 14px;
+}
+
+.advice-panel .advice-title-row > button:hover {
+  background: #eaf2ff;
+}
+
+/* 屏幕适配：(width<=1150px) */
+
+@media (width<=1150px) {
+  .heat-court-pro {
+    width: min(380px, 80%);
+  }
+}
+
+/* 屏幕适配：(width<=760px) */
+
+@media (width<=760px) {
+  .mini-court-pro {
+    height: 210px;
+  }
+
+  .training-target {
+    grid-template-columns: 1fr;
+  }
+
+  .advice-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .advice-panel .coaching-card {
+    grid-template-columns: 25px minmax(0, 1fr);
+  }
+}
+
+.analysis-shell .analysis-content {
+  width: min(1440px, 100% - 64px);
+  padding: 64px 0 80px;
+}
+
+/* 屏幕适配：(width<=760px) */
+
+@media (width<=760px) {
+  .analysis-shell .analysis-content {
+    width: calc(100% - 24px);
+  }
+}
+
+.analysis-metadata {
+  overflow-wrap: anywhere;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  font: 700 13px/1.6 monospace;
+  display: flex;
+  border: 1px solid var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  border-radius: 11px;
+}
+
+.job.failed {
+  border-color: #ff685b4d;
+  border: 1px solid var(--hairline);
+  color: #333;
+  background: var(--parchment);
+  border-radius: 11px;
+}
+
+.mini-route-polyline {
+  fill: none;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #06c;
+  filter: none;
+}
+
+.mini-court-pro > p {
+  color: var(--muted);
+  text-align: center;
+  margin: 0;
+  padding: 72px 24px;
+  font-size: 13px;
+}
+
+/* 屏幕适配：(width<=820px) */
+
+@media (width<=820px) {
+  .analysis-metadata {
+    display: grid;
+  }
+}
+
+.analysis-nav .brand > span {
+  background: var(--blue);
+  width: 28px;
+  height: 28px;
+  box-shadow: none;
+  border-radius: 50%;
+}
+
+.analysis-nav .brand {
+  border-right: 1px solid var(--hairline);
+  padding-right: 24px;
+}
+
+.analysis-nav .brand strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.overview {
+  padding-top: 80px;
+}
+
+/* 屏幕适配：(width<=1068px) */
+
+@media (width<=1068px) {
+  .analysis-focus,
+  .lower-analysis {
+    grid-template-columns: 1fr;
+  }
+
+  .round-panel {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    display: grid;
+  }
+
+  .round-panel > header,
+  .round-panel > label,
+  .round-panel > .twin-btn {
+    grid-column: 1/-1;
+  }
+}
+
+/* 屏幕适配：(width<=833px) */
+
+@media (width<=833px) {
+  .analysis-content,
+  .analysis-shell .analysis-content {
+    width: calc(100% - 40px);
+    padding-top: 48px;
+  }
+
+  .analysis-nav > p,
+  .analysis-nav .outline-btn {
+    display: none;
+  }
+}
+
+/* 屏幕适配：(width<=640px) */
+
+@media (width<=640px) {
+  .analysis-heading h1 {
+    font-size: 34px;
+  }
+
+  .analysis-content,
+  .analysis-shell .analysis-content {
+    width: calc(100% - 32px);
+    padding: 40px 0 64px;
+  }
+
+  .analysis-heading {
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .analysis-nav {
+    height: auto;
+    min-height: 52px;
+    padding: 8px 16px;
+  }
+
+  .analysis-nav .brand {
+    border: 0;
+    padding: 0;
+  }
+
+  .analysis-nav > div {
+    gap: 8px;
+  }
+
+  .analysis-nav .solid-btn {
+    min-height: 36px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .analysis-heading .status {
+    width: max-content;
+    margin-top: 16px;
+  }
+
+  .analysis-controls {
+    flex-wrap: wrap;
+  }
+
+  .analysis-controls > div {
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+  }
+
+  .round-panel {
+    display: block;
+  }
+
+  .metric-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric-strip > span {
+    padding: 18px;
+  }
+}
+
+/* 屏幕适配：(width<=419px) */
+
+@media (width<=419px) {
+  .analysis-heading h1 {
+    font-size: 28px;
+  }
+
+  .metric-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-strip > span {
+    border-right: 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .metric-strip > span:last-child {
+    border-bottom: 0;
+  }
+}
+
+.mini-shuttle-route {
+  fill: none;
+  stroke: #ff8a3d;
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 6 4;
+  opacity: 0.85;
+}
+
+.mini-shuttle-dot {
+  fill: #ff8a3d;
+  stroke: #fff;
+  stroke-width: 1.6px;
+  filter: drop-shadow(0 1px 2px #ff8a3d66);
+}
+
+.heat-route-shuttle {
+  fill: none;
+  stroke: #ff7a1a;
+  stroke-width: 2.6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 17 13;
+  opacity: 0.9;
+}
+
+.heat-shuttle-dot {
+  fill: #ff7a1a;
+  stroke: #fff;
+  stroke-width: 2px;
+  filter: drop-shadow(0 2px 6px #ff7a1a66);
+}
+
+/* 自动识别的候选球场边线 */
+.court-detected-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.court-detected-overlay polygon { fill: #ffdd0020; stroke: #ffdf32; stroke-width: 2; vector-effect: non-scaling-stroke; }
+
+/* 标定角点支持鼠标与触屏拖拽。 */
+.calibration > span { cursor: grab; touch-action: none; user-select: none; }
+.calibration > span:active { cursor: grabbing; }
+
+/* 分析操作栏：球员选择与两项主要操作。 */
+.analysis-controls { display: flex; flex-wrap: wrap; gap: 10px; }
+.analysis-controls > div { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-right: auto; }
+.analysis-controls button { white-space: nowrap; }
+
+/* 投影到视频上的球场内部线，用于核对透视映射。 */
+.court-detected-overlay line { stroke: #ffdf32; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+/* 为画面外的标定角点预留空间；视频画面仍是坐标基准。 */
+.video-stage { margin: 8.333% 8.333% 5%; overflow: visible; }
+.calibration { inset: -10%; background: transparent; }
+
+/* 表现概览、图表说明和建议序号。 */
+.metric-strip small { font-size: 16px; }
+.heat-panel header em, .advice-panel header em { font-size: 16px; }
+.coaching-card > .advice-index { font-size: 17px; }
+.advice-panel .advice-title-row > button { flex: none; }
+.heat-legend-list { display: grid; gap: 8px; margin: 12px 0; }
+.heat-legend-list > div { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.heat-legend-list i { flex: none; width: 25px; }
+.legend-player { border-top: 3px dashed #06c; }
+.legend-shuttle { border-top: 3px dashed #ff7a1a; }
+.legend-heat { height: 12px; background: #ffaaa4; border-radius: 2px; }
+.heat-explanation > p { margin: 12px 0 0; }
+
+.advice-panel .advice-title-row { flex-direction: row; align-items: center; }
+
+/* 没有轨迹时收起球场占位，避免大面积空白。 */
+.heat-panel-empty { align-self: start; }
+.heat-court-pro.heat-court-empty { aspect-ratio: auto; width: auto; height: auto; margin: 22px; border-radius: 12px; }
+.heat-court-empty .hub-empty { min-height: 120px; padding: 24px; border: 0; background: transparent; }

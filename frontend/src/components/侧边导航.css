@@ -1,0 +1,171 @@
+/* 侧边导航：按界面区域分段；修改具体区域时查找下面的中文注释。 */
+
+/* 左侧导航栏 */
+
+.hub-sidebar {
+  z-index: 30;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 112px;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: linear-gradient(#f3f8ff 0%, #eaf4ff 100%);
+  border: 0;
+  border-right: 1px solid #d7e5f4;
+  padding: 20px 12px;
+}
+
+/* 导航栏品牌入口 */
+
+.hub-logo {
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  justify-items: center;
+  gap: 5px;
+  display: grid;
+  color: var(--ink);
+}
+
+.hub-logo > span {
+  place-items: center;
+  display: grid;
+  background: var(--blue);
+  box-shadow: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.hub-logo strong {
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hub-sidebar nav {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+  margin-top: 48px;
+}
+
+.hub-sidebar nav button {
+  cursor: pointer;
+  border: 0;
+  align-content: center;
+  justify-items: center;
+  gap: 5px;
+  height: 66px;
+  padding: 7px 2px;
+  display: grid;
+  color: #5f7896;
+  background: 0 0;
+  border-radius: 8px;
+  min-height: 64px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.hub-sidebar nav button i {
+  font-style: normal;
+  font-size: 18px;
+}
+
+.hub-sidebar nav button.active {
+  color: var(--blue);
+  box-shadow: none;
+  background: #dcecff;
+}
+
+/* 屏幕适配：(width<=720px) */
+
+@media (width<=720px) {
+  .hub-sidebar {
+    width: 68px;
+    padding: 16px 7px;
+  }
+
+  .hub-logo strong,
+  .hub-sidebar nav button span {
+    display: none;
+  }
+
+  .hub-sidebar nav {
+    margin-top: 38px;
+  }
+}
+
+/* 屏幕适配：(width<=833px) */
+
+@media (width<=833px) {
+  .hub-sidebar {
+    width: 80px;
+  }
+
+  .hub-logo strong,
+  .hub-sidebar nav button span {
+    display: none;
+  }
+
+  .hub-sidebar nav button {
+    min-height: 56px;
+  }
+}
+
+/* 屏幕适配：(width<=640px) */
+
+@media (width<=640px) {
+  .hub-sidebar {
+    z-index: 80;
+    border-top: 1px solid #d7e5f4;
+    border-right: 0;
+    flex-direction: row;
+    width: auto;
+    height: 68px;
+    padding: 6px 8px;
+    inset: auto 0 0;
+  }
+
+  .hub-logo {
+    display: none;
+  }
+
+  .hub-sidebar nav {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    width: 100%;
+    margin: 0;
+    display: grid;
+  }
+
+  .hub-sidebar nav button {
+    border-radius: 8px;
+    min-width: 44px;
+    height: 54px;
+    min-height: 54px;
+    padding: 4px;
+  }
+
+  .hub-sidebar nav button i {
+    font-size: 16px;
+  }
+
+  .hub-sidebar nav button span {
+    font-size: 13px;
+    display: block;
+  }
+}
+
+/* 屏幕适配：(width<=419px) */
+
+@media (width<=419px) {
+  .hub-sidebar nav button span {
+    display: none;
+  }
+}

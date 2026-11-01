@@ -1,0 +1,12 @@
+/* 全局基础样式和各组件样式。组件内部不再通过主题文件反复覆盖。 */
+@import "./styles/base.css";
+@import "./components/首页.css";
+@import "./components/功能页面.css";
+@import "./components/训练分析.css";
+@import "./components/训练中心.css";
+@import "./components/侧边导航.css";
+@import "./components/当前视频卡片.css";
+@import "./components/视频片段弹窗.css";
+@import "./components/重命名弹窗.css";
+
+@import "./components/球场回放.css";

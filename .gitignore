@@ -1,0 +1,9 @@
+frontend/node_modules/
+frontend-style-backup/
+.venv/
+data/
+videos/
+logs/
+.run/
+__pycache__/
+*.pyc

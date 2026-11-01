@@ -1,0 +1,118 @@
+/* 重命名弹窗：按界面区域分段；修改具体区域时查找下面的中文注释。 */
+
+.case-rename-btn {
+  align-self: center;
+  margin-right: 12px;
+}
+
+/* 重命名弹窗遮罩 */
+
+.rename-modal {
+  z-index: 220;
+  background: #000000ad;
+  place-items: center;
+  padding: 24px;
+  display: grid;
+  position: fixed;
+  inset: 0;
+}
+
+/* 重命名弹窗内容 */
+
+.rename-dialog {
+  border: 1px solid var(--hairline);
+  background: #fff;
+  border-radius: 18px;
+  width: min(560px, 100vw - 32px);
+  overflow: hidden;
+}
+
+.rename-dialog > header {
+  border-bottom: 1px solid var(--hairline);
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px;
+  display: flex;
+}
+
+.rename-dialog > header h2 {
+  margin: 10px 0 8px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.rename-dialog > header p {
+  color: #333;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.47;
+}
+
+.rename-dialog > label {
+  color: #333;
+  gap: 10px;
+  padding: 24px 24px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  display: grid;
+}
+
+.rename-dialog > label input {
+  border: 1px solid var(--hairline);
+  width: 100%;
+  height: 48px;
+  color: var(--ink);
+  background: #fff;
+  border-radius: 9999px;
+  padding: 0 18px;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.rename-dialog > label input:focus {
+  border-color: var(--blue);
+}
+
+/* 重命名错误提示 */
+
+.rename-error {
+  color: #333;
+  margin: 0;
+  padding: 0 24px 12px;
+  font-size: 14px;
+}
+
+.rename-dialog > footer {
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 24px 24px;
+  display: flex;
+}
+
+/* 屏幕适配：(width<=640px) */
+
+@media (width<=640px) {
+  .case-rename-btn {
+    justify-self: start;
+    margin: 0 0 12px 12px;
+  }
+
+  .rename-modal {
+    padding: 10px;
+  }
+
+  .rename-dialog > header,
+  .rename-dialog > label {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .rename-dialog > footer {
+    padding-left: 18px;
+    padding-right: 18px;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+  }
+}

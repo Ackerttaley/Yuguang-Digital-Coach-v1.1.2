@@ -1,0 +1,461 @@
+/* 视频片段弹窗：按界面区域分段；修改具体区域时查找下面的中文注释。 */
+
+.segment-toolbar {
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--hairline);
+  background: #fff;
+}
+
+.segment-toolbar button {
+  border: 1px solid var(--hairline);
+  color: #333;
+  background: #fff;
+  border-radius: 8px;
+  min-height: 44px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.segment-toolbar > span {
+  margin-right: auto;
+  font: 700 13px monospace;
+  color: #333;
+  font-size: 13px;
+}
+
+/* 屏幕适配：(width<=820px) */
+
+@media (width<=820px) {
+  .segment-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .segment-toolbar > span {
+    flex-basis: 100%;
+  }
+}
+
+/* 视频片段弹窗遮罩 */
+
+.segment-modal {
+  z-index: 200;
+  place-items: center;
+  display: grid;
+  position: fixed;
+  inset: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: #000000ad;
+  padding: 24px;
+}
+
+/* 视频片段弹窗外框 */
+
+.segment-dialog {
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+  border: 1px solid var(--hairline);
+  width: min(1180px, 96vw);
+  box-shadow: none;
+  background: #fff;
+  border-radius: 18px;
+}
+
+.segment-dialog > header {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  display: flex;
+  border-bottom: 1px solid var(--hairline);
+  padding: 24px;
+}
+
+.segment-dialog > header h2 {
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin: 12px 0 8px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.47;
+}
+
+.segment-dialog > header p {
+  max-width: 720px;
+  margin: 0;
+  color: #333;
+  font-size: 17px;
+  line-height: 1.47;
+}
+
+/* 关闭弹窗按钮 */
+
+.segment-close {
+  cursor: pointer;
+  border-radius: 50%;
+  flex: none;
+  font-size: 24px;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  color: var(--ink);
+  background: #d2d2d7a3;
+  border: 0;
+}
+
+.segment-layout {
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+}
+
+/* 弹窗视频预览 */
+
+.segment-preview {
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: none;
+  background: #000;
+  border-radius: 8px;
+}
+
+.segment-preview video {
+  aspect-ratio: 16/9;
+  width: 100%;
+  display: block;
+  background: #000;
+}
+
+.segment-preview > span {
+  padding: 10px 14px;
+  font: 700 13px monospace;
+  display: block;
+  color: #fff;
+  background: var(--tile-3);
+}
+
+/* 片段编辑区域 */
+
+.segment-editor {
+  flex-direction: column;
+  gap: 18px;
+  display: flex;
+  border: 1px solid var(--hairline);
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.segment-editor label > span {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+  font-size: 13px;
+  display: flex;
+  color: #333;
+}
+
+.segment-editor label b {
+  font: 800 13px monospace;
+  color: var(--blue);
+}
+
+.segment-editor label > input {
+  width: 100%;
+  accent-color: var(--blue);
+}
+
+/* 区间标记按钮 */
+
+.segment-markers {
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  display: grid;
+}
+
+.segment-markers button {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid var(--hairline);
+  color: #333;
+  background: #fff;
+  border-radius: 8px;
+  min-height: 44px;
+  font-weight: 400;
+}
+
+.segment-play {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 13px;
+  margin-top: auto;
+  border: 1px solid var(--hairline);
+  background: #fff;
+  border-radius: 8px;
+  min-height: 44px;
+  font-weight: 400;
+  color: var(--blue);
+}
+
+.segment-dialog > footer {
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  display: flex;
+  border-top: 1px solid var(--hairline);
+  padding: 20px 24px 24px;
+}
+
+.segment-dialog > footer > div {
+  gap: 10px;
+  display: flex;
+}
+
+/* 屏幕适配：(width<=820px) */
+
+@media (width<=820px) {
+  .segment-modal {
+    padding: 10px;
+  }
+
+  .segment-dialog {
+    border-radius: 20px;
+    max-height: calc(100vh - 20px);
+  }
+
+  .segment-layout {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .segment-dialog > header {
+    padding: 20px;
+  }
+
+  .segment-dialog > header h2 {
+    font-size: 25px;
+  }
+
+  .segment-dialog > footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .segment-dialog > footer > div {
+    width: 100%;
+  }
+
+  .segment-dialog > footer button {
+    flex: 1;
+  }
+
+  .segment-markers {
+    grid-template-columns: 1fr;
+  }
+}
+
+.segment-close:active,
+.segment-markers button:active,
+.segment-play:active {
+  transform: scale(0.95);
+}
+
+.segment-dialog > footer > span {
+  color: #333;
+  font-size: 14px;
+}
+
+/* 屏幕适配：(width<=640px) */
+
+@media (width<=640px) {
+  .segment-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .segment-toolbar > span {
+    flex-basis: 100%;
+  }
+
+  .segment-modal {
+    padding: 10px;
+  }
+
+  .segment-dialog {
+    border-radius: 18px;
+    max-height: calc(100vh - 20px);
+  }
+
+  .segment-layout {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .segment-dialog > header {
+    padding: 18px;
+  }
+
+  .segment-dialog > footer {
+    padding: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .segment-dialog > header h2 {
+    font-size: 28px;
+  }
+
+  .segment-dialog > footer > div {
+    width: 100%;
+  }
+
+  .segment-dialog > footer button {
+    flex: 1;
+  }
+}
+
+/* 片段区间控制区域 */
+
+.segment-range-control {
+  gap: 8px;
+  display: grid;
+}
+
+.segment-range-endpoints {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  display: flex;
+}
+
+.segment-range-limits {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  display: flex;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.segment-range-endpoints > span {
+  gap: 5px;
+  display: grid;
+}
+
+.segment-range-endpoints > span:last-child {
+  text-align: right;
+  justify-items: end;
+}
+
+.segment-range-endpoints small {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.segment-range-endpoints b {
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* 起止时间双滑块 */
+
+.dual-range {
+  height: 44px;
+  position: relative;
+}
+
+.dual-range-track {
+  background: #e0e0e0;
+  border-radius: 9999px;
+  height: 6px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  transform: translateY(-50%);
+}
+
+.dual-range-track i {
+  top: 0;
+  bottom: 0;
+  left: var(--segment-start);
+  right: calc(100% - var(--segment-end));
+  background: var(--blue);
+  border-radius: 9999px;
+  position: absolute;
+}
+
+.dual-range input {
+  z-index: 2;
+  appearance: none;
+  pointer-events: none;
+  background: 0 0;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  position: absolute;
+  inset: 0;
+}
+
+.dual-range input::-webkit-slider-runnable-track {
+  background: 0 0;
+  height: 6px;
+}
+
+.dual-range input::-webkit-slider-thumb {
+  appearance: none;
+  background: var(--blue);
+  cursor: grab;
+  pointer-events: auto;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin-top: -9px;
+}
+
+.dual-range input::-moz-range-track {
+  background: 0 0;
+  height: 6px;
+}
+
+.dual-range input::-moz-range-thumb {
+  background: var(--blue);
+  cursor: grab;
+  pointer-events: auto;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+
+.dual-range input:focus-visible {
+  outline: 0;
+}
+
+.dual-range input:focus-visible::-webkit-slider-thumb,
+.dual-range input:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--deep);
+  outline-offset: 2px;
+}
+
+.segment-camera-tip {
+  color: var(--blue);
+  text-align: center;
+  background: #0066cc14;
+  border-radius: 11px;
+  margin: 8px 0 2px;
+  padding: 11px 14px;
+  font-size: 14px;
+  line-height: 1.47;
+}

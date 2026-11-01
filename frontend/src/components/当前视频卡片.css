@@ -1,0 +1,283 @@
+/* 当前视频卡片：按界面区域分段；修改具体区域时查找下面的中文注释。 */
+
+/* 当前视频卡片：整体宽高、两栏布局和圆角 */
+
+.continue-card {
+  grid-template-columns: 1.2fr 0.8fr;
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  background: #fff;
+  border-radius: 18px;
+  min-height: 440px;
+}
+
+/* 卡片左侧：视频预览与播放按钮 */
+
+.continue-media {
+  position: relative;
+  overflow: hidden;
+  background: var(--tile-3);
+}
+
+.continue-media video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  filter: none;
+}
+
+.continue-media:after {
+  content: "";
+  background: linear-gradient(135deg, #2764ff0d, #042a5333);
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.continue-media > button {
+  z-index: 3;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  color: var(--ink);
+  box-shadow: none;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  background: #d2d2d7b8;
+  border: 0;
+}
+
+/* 视频上的分析状态标签 */
+
+.continue-badge {
+  z-index: 3;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 99px;
+  padding: 8px 11px;
+  font-size: 13px;
+  font-weight: 800;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  color: var(--ink);
+  box-shadow: none;
+  background: #f5f5f7d6;
+  border: 1px solid #00000014;
+}
+
+/* 卡片右侧：标题、文字和指标 */
+
+.continue-copy {
+  flex-direction: column;
+  display: flex;
+  padding: 32px;
+}
+
+.continue-copy h2 {
+  margin: 12px 0 8px;
+  line-height: 1.15;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.continue-copy > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* 分析进度条 */
+
+.continue-progress {
+  align-items: center;
+  gap: 10px;
+  margin: 29px 0 24px;
+  display: flex;
+}
+
+.continue-progress > span {
+  background: #e5edf8;
+  border-radius: 6px;
+  width: 90px;
+  height: 5px;
+  overflow: hidden;
+}
+
+.continue-progress > span i {
+  width: 84%;
+  height: 100%;
+  display: block;
+  background: var(--blue);
+}
+
+.continue-progress b {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.continue-copy dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.continue-copy dl div {
+  padding-top: 12px;
+  border-top: 1px solid var(--hairline);
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 76px;
+  padding: 16px 0;
+  display: flex;
+}
+
+.continue-copy dt {
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.47;
+}
+
+.continue-copy dd {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+/* 屏幕适配：(width<=1050px) */
+
+@media (width<=1050px) {
+  .continue-card {
+    min-height: 390px;
+  }
+}
+
+/* 屏幕适配：(width<=720px) */
+
+@media (width<=720px) {
+  .continue-card {
+    grid-template-columns: 1fr;
+  }
+
+  .continue-media {
+    min-height: 270px;
+  }
+
+  .continue-copy {
+    min-height: 340px;
+  }
+}
+
+.continue-media > button:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* 屏幕适配：(width<=833px) */
+
+@media (width<=833px) {
+  .continue-card {
+    grid-template-columns: 1fr;
+  }
+
+  .continue-media {
+    min-height: 360px;
+  }
+}
+
+/* 屏幕适配：(width<=640px) */
+
+@media (width<=640px) {
+  .continue-media {
+    min-height: 240px;
+  }
+
+  .continue-copy {
+    padding: 24px;
+  }
+}
+
+/* 当前视频名称与重命名按钮 */
+
+.current-video-title {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 12px 0 0;
+  display: flex;
+}
+
+.current-video-title h2 {
+  margin: 0;
+}
+
+/* 重命名按钮 */
+
+.rename-video-btn {
+  border: 1px solid var(--blue);
+  min-height: 44px;
+  color: var(--blue);
+  cursor: pointer;
+  background: #fff;
+  border-radius: 9999px;
+  flex: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.rename-video-btn:active {
+  transform: scale(0.95);
+}
+
+.continue-copy dl dt,
+.continue-copy dl dd {
+  margin: 0;
+}
+
+/* 屏幕适配：(width<=640px) */
+
+@media (width<=640px) {
+  .current-video-title {
+    display: block;
+  }
+
+  .current-video-title .rename-video-btn {
+    margin-top: 14px;
+  }
+
+  .continue-copy dl {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* 蓝色“继续 →”按钮：字号、颜色、边框和间距都在这里 */
+
+.open-analysis {
+  border: 0;
+  border-top: 1px solid var(--line);
+  color: var(--blue); /* 文字颜色 */
+  text-align: left;
+  cursor: pointer;
+  background: 0 0;
+  margin-top: auto;
+  padding: 11px 0; /* 按钮内边距 */
+  font-size: 18px; /* 字号 */
+  font-weight: 800; /* 字重 */
+}
